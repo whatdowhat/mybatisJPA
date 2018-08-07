@@ -34,11 +34,7 @@ public class Department {
 	private List<Member> members = new ArrayList<Member>();
 	
 	public List<Member> getMembers() {
-//		if(this.members==null) {
-//			
-//			return new ArrayList<Member>();
-//			
-//		}
+
 		return members;
 	}
 

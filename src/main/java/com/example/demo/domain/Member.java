@@ -62,6 +62,13 @@ public class Member {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Member(String userName, int age, Department department) {
+		super();
+		this.userName = userName;
+		this.age = age;
+		this.department = department;
+	}
+
 	public Member(String userName, int age) {
 		super();
 		this.userName = userName;
