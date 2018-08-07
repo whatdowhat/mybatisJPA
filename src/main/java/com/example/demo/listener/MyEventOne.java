@@ -14,6 +14,11 @@ public class MyEventOne extends ApplicationEvent{
 	
 	private String name;
 	
+	public MyEventOne(Object source) {
+		super(source);
+		// TODO Auto-generated constructor stub
+	}
+
 	public MyEventOne(Object source,boolean mykey,String name) {
 		super(source);
 		
