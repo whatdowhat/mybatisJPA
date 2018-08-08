@@ -17,7 +17,8 @@ public class MyInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("this is a interceptor prehandle");
+		
+		logger.info("thisis prehandle interceptor::::####{}" ,handler.getClass().getName());
 		return super.preHandle(request, response, handler);
 		
 		
@@ -28,6 +29,7 @@ public class MyInterceptor extends HandlerInterceptorAdapter{
 			ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("this is a interceptor prehandle");
+		logger.info("this is posthandle interceptor::::#### {}");
 		super.postHandle(request, response, handler, modelAndView);
 	}
 
