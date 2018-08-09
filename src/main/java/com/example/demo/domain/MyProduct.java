@@ -27,7 +27,7 @@ public class MyProduct {
 	@Column
 	private BigDecimal produectPrice;
 
-	@OneToMany(fetch = FetchType.EAGER,mappedBy="myProduct")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="myProduct")
 	private List<MyOderAndProduct> list;
 	
 	public List<MyOderAndProduct> getList() {

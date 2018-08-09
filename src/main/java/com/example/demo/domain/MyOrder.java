@@ -26,7 +26,7 @@ public class MyOrder {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date orderRegisterTime;
 
-	@OneToMany(fetch = FetchType.EAGER,mappedBy="myOrder")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="myOrder")
 	private List<MyOderAndProduct> list;
 	
 	

@@ -84,7 +84,7 @@ public class DemoApplication {
 			myOderAndProduct1.setMyProduct(myProduct1);
 			myOPRep.save(myOderAndProduct1);
 			
-			System.out.println("#############"+myOderAndProduct1.toString());
+//			System.out.println("#############"+myOderAndProduct1.toString());
 			
 			myOderAndProduct1 = new MyOderAndProduct();
 			myOderAndProduct1.setMyOrder(myOrder1);
@@ -105,10 +105,28 @@ public class DemoApplication {
 			myOderAndProduct1.setMyProduct(myProduct2);
 			myOPRep.save(myOderAndProduct1);
 			
+
+
+			
+//			System.out.println(			myOderRep.findByOrderBy("홍길동").isEmpty());
+			myOderRep.findByOrderBy("홍길동").stream().forEach(System.out::println);
+			
+			myOderRep.findByOrderBy("홍길동").stream().forEach(item -> myOPRep.findByMyOrder(item).stream().forEach(System.out::println));
+//			myOPRep.findById(5);
+//			myProductRep.findAll();
+//			
+//			logger.error("result::{}",myOderRep.findById(3).get().getOrderBy());
+//			logger.error("result::{}",myProductRep.findById(1).get().getProductName());
+//			logger.error("result::{}",myProductRep.findById(1).get().getProduectPrice());
+//			logger.error("result::{}",myProductRep.findById(1).get().getProduectQuantity());
+//			logger.error("result::{}");
+//			myProductRep.findById(2).get().getList().forEach(System.out::println);
+//			
 			
 			
+//			myOderRep.findById(3).get().getList().forEach(System.out::println);
 			
-			myOderRep.findById(3).get().getList().forEach(System.out::println);
+			
 			
 //			DomainSample domainSample = new DomainSample();
 //			
