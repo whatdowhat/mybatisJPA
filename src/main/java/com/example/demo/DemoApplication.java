@@ -1,11 +1,6 @@
 package com.example.demo;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-
-import javax.persistence.EnumType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,13 +8,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 
-import com.example.demo.domain.AccessDomain;
-import com.example.demo.domain.Department;
-import com.example.demo.domain.DomainSample;
-import com.example.demo.domain.DomainSample.RoleType;
-import com.example.demo.domain.Member;
-import com.example.demo.domain.MyOderAndProduct;
 import com.example.demo.domain.MyOrder;
 import com.example.demo.domain.MyProduct;
 import com.example.demo.domain.repository.AccessDomainRepository;
@@ -59,6 +51,7 @@ public class DemoApplication {
 			
 			
 			myProductRep.save(myProduct1);
+			
 			MyProduct  myProduct2 = new MyProduct();
 			myProduct2.setProductName("다른거");
 			myProduct2.setProduectQuantity(2);
@@ -66,52 +59,122 @@ public class DemoApplication {
 			myProductRep.save(myProduct2);
 			
 			
+			MyProduct  myProduct3 = new MyProduct();
+			myProduct3.setProductName("라면1");
+			myProduct3.setProduectQuantity(1);
+			myProduct3.setProduectPrice(new BigDecimal(22));
+			myProductRep.save(myProduct3);
+			
+			myProduct3 = new MyProduct();
+			myProduct3.setProductName("라면2");
+			myProduct3.setProduectQuantity(1);
+			myProduct3.setProduectPrice(new BigDecimal(22));
+			myProductRep.save(myProduct3);
+			
+			myProduct3 = new MyProduct();
+			myProduct3.setProductName("라면3");
+			myProduct3.setProduectQuantity(1);
+			myProduct3.setProduectPrice(new BigDecimal(22));
+			myProductRep.save(myProduct3);
+			
+			myProduct3 = new MyProduct();
+			myProduct3.setProductName("소시지");
+			myProduct3.setProduectQuantity(1);
+			myProduct3.setProduectPrice(new BigDecimal(22));
+			myProductRep.save(myProduct3);
+			
+			myProduct3 = new MyProduct();
+			myProduct3.setProductName("과자");
+			myProduct3.setProduectQuantity(1);
+			myProduct3.setProduectPrice(new BigDecimal(22));
+			myProductRep.save(myProduct3);
+			
+			myProduct3 = new MyProduct();
+			myProduct3.setProductName("음료1");
+			myProduct3.setProduectQuantity(1);
+			myProduct3.setProduectPrice(new BigDecimal(22));
+			myProductRep.save(myProduct3);
+			
+			myProduct3 = new MyProduct();
+			myProduct3.setProductName("음료2");
+			myProduct3.setProduectQuantity(1);
+			myProduct3.setProduectPrice(new BigDecimal(22));
+			myProductRep.save(myProduct3);
+			
+			myProduct3 = new MyProduct();
+			myProduct3.setProductName("음료3");
+			myProduct3.setProduectQuantity(1);
+			myProduct3.setProduectPrice(new BigDecimal(22));
+			myProductRep.save(myProduct3);
+			
+			myProduct3 = new MyProduct();
+			myProduct3.setProductName("기타1");
+			myProduct3.setProduectQuantity(1);
+			myProduct3.setProduectPrice(new BigDecimal(22));
+			myProductRep.save(myProduct3);
+			
+			myProduct3 = new MyProduct();
+			myProduct3.setProductName("기타2");
+			myProduct3.setProduectQuantity(100);
+			myProduct3.setProduectPrice(new BigDecimal(22000));
+			myProductRep.save(myProduct3);
+			
 			MyOrder myOrder1 = new MyOrder();
 			
-			myOrder1.setOrderBy("홍길동");
-			myOrder1.setOrderRegisterTime(new Date());
-			myOderRep.save(myOrder1);
-			
-			MyOrder myOrder2 = new MyOrder();
-			
-			myOrder2.setOrderBy("이길동");
-			myOrder2.setOrderRegisterTime(new Date());
-			myOderRep.save(myOrder2);
-			
-			MyOderAndProduct myOderAndProduct1 = new MyOderAndProduct();
-			
-			myOderAndProduct1.setMyOrder(myOrder1);
-			myOderAndProduct1.setMyProduct(myProduct1);
-			myOPRep.save(myOderAndProduct1);
-			
-//			System.out.println("#############"+myOderAndProduct1.toString());
-			
-			myOderAndProduct1 = new MyOderAndProduct();
-			myOderAndProduct1.setMyOrder(myOrder1);
-			myOderAndProduct1.setMyProduct(myProduct2);
-			
-			
-			myOPRep.save(myOderAndProduct1);
-			
-			
-			myOderAndProduct1 = new MyOderAndProduct();
-			myOderAndProduct1.setMyOrder(myOrder2);
-			myOderAndProduct1.setMyProduct(myProduct2);
-			
-			myOPRep.save(myOderAndProduct1);
-			
-			myOderAndProduct1 = new MyOderAndProduct();
-			myOderAndProduct1.setMyOrder(myOrder2);
-			myOderAndProduct1.setMyProduct(myProduct2);
-			myOPRep.save(myOderAndProduct1);
-			
-
-
-			
-//			System.out.println(			myOderRep.findByOrderBy("홍길동").isEmpty());
-			myOderRep.findByOrderBy("홍길동").stream().forEach(System.out::println);
-			
-			myOderRep.findByOrderBy("홍길동").stream().forEach(item -> myOPRep.findByMyOrder(item).stream().forEach(System.out::println));
+//			PageRequest pageRequest = PageRequest.of(0, 10, Sort.by(Direction.ASC,"age","id"));
+//			PageRequest pageRequest = PageRequest.of(0, 5,Sort.by(Direction.DESC, "produectQuantity"));
+			PageRequest pageRequest = PageRequest.of(0, 5,Sort.by(Direction.DESC, "productId"));
+			System.out.println("@@@@");
+			System.out.println(myProductRep.findAll(pageRequest).getSize());
+			myProductRep.findAll(pageRequest).getContent().stream().forEach(System.out::println);
+			System.out.println("@@@@");
+//			
+//			myOrder1.setOrderBy("홍길동");
+//			myOrder1.setOrderRegisterTime(new Date());
+//			myOderRep.save(myOrder1);
+//			
+//			MyOrder myOrder2 = new MyOrder();
+//			
+//			myOrder2.setOrderBy("이길동");
+//			myOrder2.setOrderRegisterTime(new Date());
+//			myOderRep.save(myOrder2);
+//			
+//			MyOderAndProduct myOderAndProduct1 = new MyOderAndProduct();
+//			
+//			myOderAndProduct1.setMyOrder(myOrder1);
+//			myOderAndProduct1.setMyProduct(myProduct1);
+//			myOPRep.save(myOderAndProduct1);
+//			
+////			System.out.println("#############"+myOderAndProduct1.toString());
+//			
+//			myOderAndProduct1 = new MyOderAndProduct();
+//			myOderAndProduct1.setMyOrder(myOrder1);
+//			myOderAndProduct1.setMyProduct(myProduct2);
+//			
+//			
+//			
+//			
+//			myOPRep.save(myOderAndProduct1);
+//			
+//			
+//			myOderAndProduct1 = new MyOderAndProduct();
+//			myOderAndProduct1.setMyOrder(myOrder2);
+//			myOderAndProduct1.setMyProduct(myProduct2);
+//			
+//			myOPRep.save(myOderAndProduct1);
+//			
+//			myOderAndProduct1 = new MyOderAndProduct();
+//			myOderAndProduct1.setMyOrder(myOrder2);
+//			myOderAndProduct1.setMyProduct(myProduct2);
+//			myOPRep.save(myOderAndProduct1);
+//			
+//
+//
+//			
+////			System.out.println(			myOderRep.findByOrderBy("홍길동").isEmpty());
+//			myOderRep.findByOrderBy("홍길동").stream().forEach(System.out::println);
+//			
+//			myOderRep.findByOrderBy("홍길동").stream().forEach(item -> myOPRep.findByMyOrder(item).stream().forEach(System.out::println));
 //			myOPRep.findById(5);
 //			myProductRep.findAll();
 //			

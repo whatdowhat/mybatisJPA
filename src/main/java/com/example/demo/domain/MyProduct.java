@@ -16,7 +16,7 @@ public class MyProduct {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int ProductId;
+	private int productId;
 	
 	@Column
 	private String productName;
@@ -39,11 +39,11 @@ public class MyProduct {
 	}
 
 	public int getProductId() {
-		return ProductId;
+		return productId;
 	}
 
 	public void setProductId(int productId) {
-		ProductId = productId;
+		productId = productId;
 	}
 
 	public String getProductName() {
@@ -72,7 +72,7 @@ public class MyProduct {
 
 	public MyProduct(int productId, String productName, int produectQuantity, BigDecimal produectPrice) {
 		super();
-		ProductId = productId;
+		productId = productId;
 		this.productName = productName;
 		this.produectQuantity = produectQuantity;
 		this.produectPrice = produectPrice;
@@ -85,7 +85,7 @@ public class MyProduct {
 
 	@Override
 	public String toString() {
-		return "MyProduct [ProductId=" + ProductId + ", productName=" + productName + ", produectQuantity="
+		return "MyProduct [ProductId=" + productId + ", productName=" + productName + ", produectQuantity="
 				+ produectQuantity + ", produectPrice=" + produectPrice + "]";
 	}
 	
