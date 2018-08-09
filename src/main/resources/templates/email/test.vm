@@ -1,0 +1,11 @@
+
+<html>
+<body>
+<h3>Hi ${myparam}, welcome to the Chipping Sodbury On-the-Hill message boards!</h3>
+
+<div>
+    this is sent by ${myparam}
+</div>
+</body>
+
+</html>

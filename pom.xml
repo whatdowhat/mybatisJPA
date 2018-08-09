@@ -7,7 +7,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
@@ -27,6 +27,8 @@
 	</properties>
 
 	<dependencies>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -73,6 +75,25 @@
 			<artifactId>datasource-proxy</artifactId>
 			<version>${datasource-proxy.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-support</artifactId>
+			<version>2.0.6</version>
+		</dependency>
+
+
+
 	</dependencies>
 
 	<build>

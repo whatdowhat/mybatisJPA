@@ -1,9 +1,17 @@
 package com.example.demo;
 
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +20,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 
+import com.example.demo.domain.MyOderAndProduct;
 import com.example.demo.domain.MyOrder;
 import com.example.demo.domain.MyProduct;
 import com.example.demo.domain.repository.AccessDomainRepository;
@@ -25,6 +34,9 @@ import com.example.demo.domain.repository.MyProductRep;
 @SpringBootApplication
 public class DemoApplication {
 
+	@Value("${spring.mail.port}")
+	String test;
+	
 	Logger logger =  LoggerFactory.getLogger(this.getClass());
 	
 	public static void main(String[] args) {
@@ -120,30 +132,40 @@ public class DemoApplication {
 			myProductRep.save(myProduct3);
 			
 			MyOrder myOrder1 = new MyOrder();
+			myOrder1.setOrderBy("홍길동");
+			myOrder1.setOrderRegisterTime(new Date());
+			myOderRep.save(myOrder1);
 			
+			MyOrder myOrder2 = new MyOrder();
+			
+			myOrder2.setOrderBy("이길동");
+			myOrder2.setOrderRegisterTime(new Date());
+			myOderRep.save(myOrder2);
+			
+			MyOderAndProduct myOderAndProduct1 = new MyOderAndProduct();
+			
+			myOderAndProduct1.setMyOrder(myOrder1);
+			myOderAndProduct1.setMyProduct(myProduct1);
+			myOPRep.save(myOderAndProduct1);
 //			PageRequest pageRequest = PageRequest.of(0, 10, Sort.by(Direction.ASC,"age","id"));
 //			PageRequest pageRequest = PageRequest.of(0, 5,Sort.by(Direction.DESC, "produectQuantity"));
 			PageRequest pageRequest = PageRequest.of(0, 5,Sort.by(Direction.DESC, "productId"));
+			
+			
+			
+			
 			System.out.println("@@@@");
 			System.out.println(myProductRep.findAll(pageRequest).getSize());
 			myProductRep.findAll(pageRequest).getContent().stream().forEach(System.out::println);
 			System.out.println("@@@@");
-//			
-//			myOrder1.setOrderBy("홍길동");
-//			myOrder1.setOrderRegisterTime(new Date());
-//			myOderRep.save(myOrder1);
-//			
-//			MyOrder myOrder2 = new MyOrder();
-//			
-//			myOrder2.setOrderBy("이길동");
-//			myOrder2.setOrderRegisterTime(new Date());
-//			myOderRep.save(myOrder2);
-//			
-//			MyOderAndProduct myOderAndProduct1 = new MyOderAndProduct();
-//			
-//			myOderAndProduct1.setMyOrder(myOrder1);
-//			myOderAndProduct1.setMyProduct(myProduct1);
-//			myOPRep.save(myOderAndProduct1);
+			System.out.println(test);
+//			myProductRep.findTop3().forEach(System.out::println);
+//			myOderRep.findByOrderBy("홍길동").stream().collect(Collectors.toList()).forEach(System.out::println);
+			
+//			System.out.println("$$$$"+myOderRep.findByOrderBy("홍길동").isEmpty());
+			
+			
+			
 //			
 ////			System.out.println("#############"+myOderAndProduct1.toString());
 //			
