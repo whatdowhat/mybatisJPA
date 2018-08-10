@@ -1,9 +1,11 @@
 package com.example.demo.util;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
+import javax.print.DocFlavor.URL;
 
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +77,7 @@ public class EmailServiceImpl {
 			}
 			
 		};
+		
 		
 		this.mailSender.send(preparator);
 		

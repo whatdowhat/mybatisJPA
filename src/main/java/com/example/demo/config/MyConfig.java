@@ -1,7 +1,12 @@
 package com.example.demo.config;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -97,6 +102,8 @@ public class MyConfig implements WebMvcConfigurer{
 	@Bean
 	public VelocityEngine velocityEngine()  {
 	   
+		
+		
 		VelocityEngine velocityEngine = new VelocityEngine();
 		
 		velocityEngine.setProperty("resource.loader", "class");

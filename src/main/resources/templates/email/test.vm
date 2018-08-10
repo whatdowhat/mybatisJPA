@@ -3,6 +3,7 @@
 <body>
 <h3>Hi ${myparam}, welcome to the Chipping Sodbury On-the-Hill message boards!</h3>
 
+<img src="https://www.google.co.kr/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="what?" height="211" width="213" />
 <div>
     this is sent by ${myparam}
 </div>
