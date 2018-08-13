@@ -20,6 +20,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 
+import com.example.demo.domain.MyChildrenOne;
+import com.example.demo.domain.MyChildrenTwo;
 import com.example.demo.domain.MyOderAndProduct;
 import com.example.demo.domain.MyOrder;
 import com.example.demo.domain.MyProduct;
@@ -27,6 +29,8 @@ import com.example.demo.domain.repository.AccessDomainRepository;
 import com.example.demo.domain.repository.DepartmentRepostiry;
 import com.example.demo.domain.repository.DomainSampleRepository;
 import com.example.demo.domain.repository.MemberRepository;
+import com.example.demo.domain.repository.MyChildrenOneRep;
+import com.example.demo.domain.repository.MyChildrenTwoRep;
 import com.example.demo.domain.repository.MyOPRep;
 import com.example.demo.domain.repository.MyOderRep;
 import com.example.demo.domain.repository.MyProductRep;
@@ -47,7 +51,7 @@ public class DemoApplication {
 	@Bean
 	CommandLineRunner myDemain(MemberRepository memberRepository,DepartmentRepostiry departmentRepostiry, DomainSampleRepository domainSampleRepository, AccessDomainRepository accessDomainRepository
 			,MyOderRep myOderRep, MyProductRep myProductRep , MyOPRep myOPRep
-			
+			,MyChildrenOneRep myChildrenOneRep , MyChildrenTwoRep myChildrenTwoRep
 			) {
 		
 		
@@ -159,6 +163,54 @@ public class DemoApplication {
 			myProductRep.findAll(pageRequest).getContent().stream().forEach(System.out::println);
 			System.out.println("@@@@");
 			System.out.println(test);
+			
+			MyChildrenOne childrenOne = new MyChildrenOne();
+			
+			
+			childrenOne.setAuthor("what?");
+			childrenOne.setRegDate(new Date());
+			childrenOne.setUpDate(new Date());
+			
+			myChildrenOneRep.save(childrenOne);
+			
+			childrenOne = new MyChildrenOne();
+			
+			
+			childrenOne.setAuthor("hohoW?");
+			childrenOne.setRegDate(new Date());
+			childrenOne.setUpDate(new Date());
+			
+			myChildrenOneRep.save(childrenOne);
+			
+			MyChildrenTwo childrentwo = new MyChildrenTwo();
+			
+			childrentwo.setSinger("singer name");
+			childrentwo.setRegDate(new Date());
+			childrentwo.setUpDate(new Date());
+			
+			myChildrenTwoRep.save(childrentwo);
+			
+			myChildrenOneRep.findAll().forEach(item -> 
+			
+			{
+				System.out.println(item.getAuthor());
+				System.out.println(item.getRegDate());  
+				System.out.println(item.getUpDate());
+			
+			
+			});
+			
+			myChildrenTwoRep.findAll().forEach(item -> 
+			
+			{
+				
+				System.out.println(item.getSinger());
+				System.out.println(item.getRegDate());  
+				System.out.println(item.getUpDate());
+			
+			
+			});
+			
 //			myProductRep.findTop3().forEach(System.out::println);
 //			myOderRep.findByOrderBy("홍길동").stream().collect(Collectors.toList()).forEach(System.out::println);
 			
