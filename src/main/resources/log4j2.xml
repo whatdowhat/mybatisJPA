@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Properties>
+        <Property name="basePath">C:\\logs</Property>
+    </Properties>
+ 
+    <Appenders>
+        <RollingFile name="fileLogger" fileName="${basePath}/app-info.log" filePattern="${basePath}/app-info-%d{yyyy-MM-dd}.log" append="true">
+            <PatternLayout>
+                <pattern>[%-5level] %d{DEFAULT} %c{1.}[line=%L][METHOD=%M] %msg \n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <SizeBasedTriggeringPolicy size="1GB" /> 
+            </Policies>
+        </RollingFile>
+  
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout   pattern="[%-5level] %d{DEFAULT} %c{1.}[line=%L][METHOD=%M] %msg \n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="com" level="info" additivity="true">
+            <appender-ref ref="fileLogger" level="debug" />
+        </Logger>
+        <Root level="info" additivity="false">
+            <appender-ref ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,15 +1,10 @@
 package com.example.demo;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-import javax.validation.Valid;
-
-import org.slf4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -41,7 +36,10 @@ public class DemoApplication {
 	@Value("${spring.mail.port}")
 	String test;
 	
-	Logger logger =  LoggerFactory.getLogger(this.getClass());
+	org.slf4j.Logger logger =  LoggerFactory.getLogger(this.getClass());
+	
+//	private static final org.apache.logging.log4j.Logger logger4j2 = LogManager.getLogger(DemoApplication.class);
+	private static final Logger logger4j2 = LogManager.getLogger(DemoApplication.class);
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -211,6 +209,20 @@ public class DemoApplication {
 			
 			});
 			
+			
+	        logger4j2.debug("Debugging log");
+	        logger4j2.info("Info log");
+	        logger4j2.warn("Hey, This is a warning!");
+	        logger4j2.error("Oops! We have an Error. OK");
+	        logger4j2.fatal("Damn! Fatal error. Please fix me.");
+			System.out.println("################################################");
+			logger4j2.info("something");
+			logger.info("logingback!!!");
+	        logger4j2.debug("Debugging log");
+	        logger4j2.info("Info log");
+	        logger4j2.warn("Hey, This is a warning!");
+	        logger4j2.error("Oops! We have an Error. OK");
+	        logger4j2.fatal("Damn! Fatal error. Please fix me.");
 //			myProductRep.findTop3().forEach(System.out::println);
 //			myOderRep.findByOrderBy("홍길동").stream().collect(Collectors.toList()).forEach(System.out::println);
 			
