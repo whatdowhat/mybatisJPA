@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -18,7 +20,9 @@ public class Member {
 
 	@Id
 	@Column(name="SEQ")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="native")
+	@GenericGenerator(name = "native", strategy = "native")
 	private int id;
 	
 	@Column(name="NAME")

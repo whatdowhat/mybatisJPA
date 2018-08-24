@@ -17,9 +17,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Department")
 public class Department {
-
+	
 	@Id
-	@Column(name="DEPARTMENT_SEQ")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	

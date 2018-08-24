@@ -7,11 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 public class MyOderAndProduct {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO) 
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int myOrderAndProductId;
 	
 	
