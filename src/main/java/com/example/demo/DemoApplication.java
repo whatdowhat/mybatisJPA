@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +17,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 
+import com.example.demo.domain.City;
+import com.example.demo.domain.Department;
+import com.example.demo.domain.Member;
 import com.example.demo.domain.MyChildrenOne;
 import com.example.demo.domain.MyChildrenTwo;
 import com.example.demo.domain.MyOderAndProduct;
@@ -29,6 +34,7 @@ import com.example.demo.domain.repository.MyChildrenTwoRep;
 import com.example.demo.domain.repository.MyOPRep;
 import com.example.demo.domain.repository.MyOderRep;
 import com.example.demo.domain.repository.MyProductRep;
+import com.example.demo.domain.repository.TestMapper;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -49,7 +55,8 @@ public class DemoApplication {
 	@Bean
 	CommandLineRunner myDemain(MemberRepository memberRepository,DepartmentRepostiry departmentRepostiry, DomainSampleRepository domainSampleRepository, AccessDomainRepository accessDomainRepository
 			,MyOderRep myOderRep, MyProductRep myProductRep , MyOPRep myOPRep
-			,MyChildrenOneRep myChildrenOneRep , MyChildrenTwoRep myChildrenTwoRep
+			,MyChildrenOneRep myChildrenOneRep , MyChildrenTwoRep myChildrenTwoRep,
+			TestMapper testMapper
 			) {
 		
 		
@@ -156,83 +163,86 @@ public class DemoApplication {
 			
 			
 			
-			System.out.println("@@@@");
-			System.out.println(myProductRep.findAll(pageRequest).getSize());
-			myProductRep.findAll(pageRequest).getContent().stream().forEach(System.out::println);
-			System.out.println("@@@@");
-			System.out.println(test);
-			
-			MyChildrenOne childrenOne = new MyChildrenOne();
-			
-			
-			childrenOne.setAuthor("what?");
-			childrenOne.setRegDate(new Date());
-			childrenOne.setUpDate(new Date());
-			
-			myChildrenOneRep.save(childrenOne);
-			
-			childrenOne = new MyChildrenOne();
-			
-			
-			childrenOne.setAuthor("hohoW?");
-			childrenOne.setRegDate(new Date());
-			childrenOne.setUpDate(new Date());
-			
-			myChildrenOneRep.save(childrenOne);
-			
-			MyChildrenTwo childrentwo = new MyChildrenTwo();
-			
-			childrentwo.setSinger("singer name");
-			childrentwo.setRegDate(new Date());
-			childrentwo.setUpDate(new Date());
-			
-			myChildrenTwoRep.save(childrentwo);
-			
-			myChildrenOneRep.findAll().forEach(item -> 
-			
-			{
-				System.out.println(item.getAuthor());
-				System.out.println(item.getRegDate());  
-				System.out.println(item.getUpDate());
-			
-			
-			});
-			
-			myChildrenTwoRep.findAll().forEach(item -> 
-			
-			{
-				
-				System.out.println(item.getSinger());
-				System.out.println(item.getRegDate());  
-				System.out.println(item.getUpDate());
-			
-			
-			});
-			
-			
-	        logger4j2.debug("Debugging log");
-	        logger4j2.info("Info log");
-	        logger4j2.warn("Hey, This is a warning!");
-	        logger4j2.error("Oops! We have an Error. OK");
-	        logger4j2.fatal("Damn! Fatal error. Please fix me.");
-			System.out.println("################################################");
-			logger4j2.info("something");
-			logger.info("logingback!!!");
-	        logger4j2.debug("Debugging log");
-	        logger4j2.info("Info log");
-	        logger4j2.warn("Hey, This is a warning!");
-	        logger4j2.error("Oops! We have an Error. OK");
-	        logger4j2.fatal("Damn! Fatal error. Please fix me.");
-//			myProductRep.findTop3().forEach(System.out::println);
-//			myOderRep.findByOrderBy("홍길동").stream().collect(Collectors.toList()).forEach(System.out::println);
-			
-//			System.out.println("$$$$"+myOderRep.findByOrderBy("홍길동").isEmpty());
-			
-			
-			
+//			System.out.println("@@@@");
+//			System.out.println(myProductRep.findAll(pageRequest).getSize());
+//			myProductRep.findAll(pageRequest).getContent().stream().forEach(System.out::println);
+//			System.out.println("@@@@");
+//			System.out.println(test);
 //			
-////			System.out.println("#############"+myOderAndProduct1.toString());
+//			MyChildrenOne childrenOne = new MyChildrenOne();
 //			
+//			
+//			childrenOne.setAuthor("what?");
+//			childrenOne.setRegDate(new Date());
+//			childrenOne.setUpDate(new Date());
+//			
+//			myChildrenOneRep.save(childrenOne);
+//			
+//			childrenOne = new MyChildrenOne();
+//			
+//			
+//			childrenOne.setAuthor("hohoW?");
+//			childrenOne.setRegDate(new Date());
+//			childrenOne.setUpDate(new Date());
+//			
+//			myChildrenOneRep.save(childrenOne);
+//			
+//			MyChildrenTwo childrentwo = new MyChildrenTwo();
+//			
+//			childrentwo.setSinger("singer name");
+//			childrentwo.setRegDate(new Date());
+//			childrentwo.setUpDate(new Date());
+//			
+//			myChildrenTwoRep.save(childrentwo);
+//			
+//			myChildrenOneRep.findAll().forEach(item -> 
+//			
+//			{
+//				System.out.println(item.getAuthor());
+//				System.out.println(item.getRegDate());  
+//				System.out.println(item.getUpDate());
+//			
+//			
+//			});
+//			
+//			myChildrenTwoRep.findAll().forEach(item -> 
+//			
+//			{
+//				
+//				System.out.println(item.getSinger());
+//				System.out.println(item.getRegDate());  
+//				System.out.println(item.getUpDate());
+//			
+//			
+//			});
+			
+			
+
+			
+			
+			
+			Department department =  new Department();
+			
+			department.setDepartName("1번부서");
+			department.setRemark("this is a remark ");
+			
+
+			
+			departmentRepostiry.save(department);
+			memberRepository.save(new Member("이길동", 2, department));
+			memberRepository.save(new Member("홍길동", 1, department));
+			memberRepository.save(new Member("삼길동", 3, department));
+			memberRepository.save(new Member("사길동", 4, department));
+			memberRepository.save(new Member("오길동", 5, department));
+			
+			
+			PageRequest commonPage = PageRequest.of(0, 10, Sort.by(Direction.ASC,"id"));
+			memberRepository.findAll(commonPage).getContent().stream().forEach(System.out::println);
+			
+			
+			
+//			System.out.println("#############"+myOderAndProduct1.toString());
+			
 //			myOderAndProduct1 = new MyOderAndProduct();
 //			myOderAndProduct1.setMyOrder(myOrder1);
 //			myOderAndProduct1.setMyProduct(myProduct2);
@@ -264,70 +274,25 @@ public class DemoApplication {
 //			myOPRep.findById(5);
 //			myProductRep.findAll();
 //			
-//			logger.error("result::{}",myOderRep.findById(3).get().getOrderBy());
-//			logger.error("result::{}",myProductRep.findById(1).get().getProductName());
-//			logger.error("result::{}",myProductRep.findById(1).get().getProduectPrice());
-//			logger.error("result::{}",myProductRep.findById(1).get().getProduectQuantity());
-//			logger.error("result::{}");
+//		
 //			myProductRep.findById(2).get().getList().forEach(System.out::println);
 //			
-			
-			
+//			
+//			
 //			myOderRep.findById(3).get().getList().forEach(System.out::println);
+//			
+
 			
+			testMapper.findyName("Fall River");
 			
+	        logger4j2.debug("Debugging log");
+	        logger4j2.info("Info log");
+	        logger4j2.warn("Hey, This is a warning!");
+	        logger4j2.error("Oops! We have an Error. OK");
+	        logger4j2.fatal("Damn! Fatal error. Please fix me.");
+			System.out.println("################################################");
 			
-//			DomainSample domainSample = new DomainSample();
-//			
-//			 domainSample.setRoletype(RoleType.ADMIN);
-//			 domainSample.setUserName("MyName");
-//			 domainSample.setRegistrate(new Date());
-//			 domainSample.setLobByte("String to byte".getBytes());
-//			 domainSample.setFirstName("홍");
-//			 domainSample.setLastName("길동");
-//			 
-//			 
-//			domainSampleRepository.save(domainSample);
-//			String result = new String(domainSampleRepository.findById(1).get().getLobByte());
-//			
-//			System.out.println("### bytpe ### "+domainSampleRepository.findById(1).get().getLobByte());
-//			
-//			System.out.println("###"+result);
-//			
-//			domainSampleRepository.findAll().forEach(System.out::println);
-//			logger.info("############# :: {}",memberRepository.count());
-//			
-//			Department department =  new Department();
-//			department.setDepartName("1번부서");
-//			department.setRemark("this is a remark ");
-//			
-//			departmentRepostiry.save(department);
-//			memberRepository.save(new Member("이길동", 2, department));
-//			memberRepository.save(new Member("홍길동", 1, department));
-//			memberRepository.save(new Member("삼길동", 3, department));
-//			memberRepository.save(new Member("사길동", 4, department));
-//			memberRepository.save(new Member("오길동", 5, department));
-//			
-//			logger.info("############# :: {}",departmentRepostiry.count());
-//			
-//			
-//			
-//			logger.info("############# ::is present {}",departmentRepostiry.findById(1).isPresent());
-//			
-//			Optional<Department> de = departmentRepostiry.findById(1);
-//			Optional<Member> me = memberRepository.findById(1);
-//			
-//		//	logger.info("#::list size is  {}",de.get().getMembers().size());
-//			
-//			
-//			de.get().getMembers().stream()
-//			.forEach(System.out::println); 
-//			
-//			
-//			
-//			logger.info("############# :: {}",memberRepository.findById(2).get().getDepartment().getDepartName());
-//			logger.info("############# :: {}",memberRepository.count());
-//			
+			myOPRep.findAll();
 		};
 	}
 }

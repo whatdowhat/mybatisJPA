@@ -1,0 +1,48 @@
+.card {
+  margin-bottom :25px;
+  border: 1px solid #E5E5E5;
+}
+.card-header {
+  padding: 10px 15px;
+  background: none;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0;
+  color : #777;
+}
+.card-header.bg-primary .card-title {
+  border-color: #2283BF;
+  color: $white;
+}
+.card-header.bg-success .card-title{
+  border-color: #75D1A3;
+  color: $white;
+}
+.card-header.bg-warning .card-title{
+  border-color: #FFCE56;
+  color: $white;
+}
+.card-header.bg-danger .card-title{
+  border-color: #FF7A7A;
+  color: $white;
+}
+.card-header.bg-info .card-title{
+  border-color: #7EC4E7;
+  color: $white;
+}
+.card-header.bg-default .card-title{
+  border-color: #E5E5E5;
+  color: $white;
+}
+.panel-primary .panel-title,
+.panel-success .panel-title,
+.panel-warning .panel-title,
+.panel-danger .panel-title,
+.panel-info .panel-title {
+  color : #FFF;
+}
